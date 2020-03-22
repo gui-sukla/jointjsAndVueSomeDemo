@@ -18,7 +18,7 @@
       MenuList
     },
     created() {
-      this.checkAuth();
+      // this.checkAuth();
     },
     data() {
       return {
@@ -104,30 +104,30 @@
     },
     computed: {
       user() {
-        return this.$store.state.user;
+        // return this.$store.state.user;
       }
     },
     methods: {
       checkAuth() {
-        let token = this.$store.state.token || sessionStorage.getItem('token');
-        if (!token) {
-          this.$router.replace('/login');
-        } else {
-          this.getUser();
-        }
+        // let token = this.$store.state.token || sessionStorage.getItem('token');
+        // if (!token) {
+        //   this.$router.replace('/login');
+        // } else {
+        //   this.getUser();
+        // }
       },
       getUser() {
-        let User = {
-          id: '7f859967-9b12-441c-badc-8a7d312f6da4',
-          username: 'admin',
-          name: 'luichooy',
-          type: {
-            code: 0,
-            name: '超级管理员'
-          }
-        };
+        // let User = {
+        //   id: '7f859967-9b12-441c-badc-8a7d312f6da4',
+        //   username: 'admin',
+        //   name: 'luichooy',
+        //   type: {
+        //     code: 0,
+        //     name: '超级管理员'
+        //   }
+        // };
 
-        this.$store.commit('SET_USER', User);
+        // this.$store.commit('SET_USER', User);
       },
       handleCommand(command) {
         console.log(command);
@@ -173,22 +173,21 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    background: #10605a;
+    background: rgba(112, 195, 188, 0.5);
     display: flex;
-    border: 1px solid cyan;
     padding: 3px;
 
 
     .main-left-panel {
-      width: 250px;
+      width: 265px;
       margin-right: 5px;
+      background: rgba(56, 136, 129,1);
     }
 
     .main-right-panel {
       display: flex;
       flex: 1;
       box-sizing: border-box;
-      border: 1px solid cyan;
     }
   }
 </style>

@@ -40,15 +40,6 @@
       return {
         paper: null,
         graph: new joint.dia.Graph,
-
-        adjacencyList: `{'指标体系_1': ['指标1'],
-            '指标1': ['指标4', '指标5', '指标6', '指标7', '指标8', '指标9'],
-            '指标4': [],
-            '指标5': [],
-            '指标6': [],
-            '指标7': [],
-            '指标8': [],
-            '指标9': [],}`,
         adjacencyList1: {
           '指标4': ['算子1'],
           '指标5': ['算子1'],
@@ -135,16 +126,39 @@
         var width = 2 * (letterSize * (0.6 * maxLineLength + 1));
         var height = 2 * ((label.split('\n').length + 1) * letterSize);
 
-        return new joint.shapes.basic.Rect({
+        // return new joint.shapes.basic.Rect({
+        return new joint.shapes.devs.Model({
           id: label,
           size: {
             width: width,
             height: height
           },
+          
+          inPorts: ['in1', 'in2'],
+          outPorts: ['out'],
+          ports: {
+            groups: {
+              'in': {
+                attrs: {
+                  '.port-body': {
+                    fill: '#16A085'
+                  }
+                }
+              },
+              'out': {
+                attrs: {
+                  '.port-body': {
+                    fill: '#E74C3C'
+                  }
+                }
+              }
+            }
+          },
+
           attrs: {
             text: {
               text: label,
-              fill: '#fff',
+              fill: '#0f0',
               'font-size': letterSize,
               'font-family': 'monospace',
               'font-weight': 'bold',
@@ -176,30 +190,12 @@
               stroke: 'darkcyan', //边框颜色
               'stroke-width': 1 //边框大小
             }
-          }
-        });
+          },
+        })
       },
 
       layout(graph) {
-        // var graph = new joint.dia.Graph;
-        // try {
-        //   var adjacencyList = eval('adjacencyList = ' + $('#adjacency-list').val());
-        // } catch (e) {
-        //   alert(e);
-        // }
-
-        // var adjacencyList = eval('adjacencyList=' + that.adjacencyList);
         var adjacencyList = this.adjacencyList1;
-        // var adjacencyList = {
-        //   '指标体系_1': ['指标1'],
-        //   '指标1': ['指标4', '指标5', '指标6', '指标7', '指标8', '指标9'],
-        //   '指标4': [],
-        //   '指标5': [],
-        //   '指标6': [],
-        //   '指标7': [],
-        //   '指标8': [],
-        //   '指标9': [],
-        // };
         var cells = this.buildGraphFromAdjacencyList(adjacencyList);
         graph.resetCells(cells);
         // joint.layout.DirectedGraph.layout(graph, {
@@ -219,246 +215,17 @@
 
       init(width, height) {
 
-
-        // function get_graph() {
-        //   let graph = new joint.dia.Graph();
-
-        //   let rect = new joint.shapes.standard.Rectangle();
-        //   rect.position(100, 30);
-        //   rect.resize(100, 40);
-        //   rect.attr({
-        //     body: {
-        //       fill: 'blue'
-        //     },
-        //     label: {
-        //       text: 'Hello',
-        //       fill: 'white'
-        //     }
-        //   });
-        //   rect.addTo(graph);
-
-        //   let rect2 = rect.clone();
-        //   rect2.translate(300, 0);
-        //   rect2.attr('label/text', 'World!');
-        //   rect2.addTo(graph);
-
-        //   for (let i = 0; i < 10; i++) {
-        //     let cir = new joint.shapes.standard.Circle();
-        //     cir.resize(100, 100);
-        //     cir.position(10, 10);
-        //     cir.attr('root/title', 'joint.shapes.standard.Circle');
-        //     cir.attr('label/text', 'Circle' + i);
-        //     cir.attr('body/fill', 'lightblue');
-        //     cir.addTo(graph);
-
-        //     let ln = new joint.shapes.standard.Link();
-        //     ln.source(cir);
-        //     ln.target(rect2);
-        //     ln.addTo(graph);
-        //   }
-
-        //   let link = new joint.shapes.standard.Link();
-        //   link.source(rect);
-        //   link.target(rect2);
-        //   link.addTo(graph);
-
-        //   //auto  layout
-        //   joint.layout.DirectedGraph.layout(graph, {
-        //     nodeSep: 50,
-        //     edgeSep: 50,
-        //     rankDir: "RL", //BT TB LR RL
-        //     dagre: dagre,
-        //     graphlib: graphlib
-        //   });
-
-        //   // return graph.toJSON();
-        //   return graph;
-        // }
-
-        // let graph = new joint.dia.Graph;
-        // graph.fromJSON(get_graph());
-        // let paper = new joint.dia.Paper({
-        //   el: $('#paper4'), // 指向HTML里ID为"myGraph"的元素
-        //   model: get_graph(), // 指定画板
-        //   width: width || 600, // 画布宽600像素
-        //   height: height || 300, // 画布高300像素
-        //   gridSize: 5, // 画布上元素拖动时步进的为5像素，默认1
-        //   drawGrid: true, // 显示步进点，方便对齐
-        //   background: { // 画布背景色
-        //     color: 'rgba(0, 0, 0, 0.1)'
-        //   },
-        // });
-
-
-
-        // function buildGraphFromAdjacencyList(adjacencyList) {
-
-        //   var elements = [];
-        //   var links = [];
-
-        //   __.each(adjacencyList, function(edges, parentElementLabel) {
-        //     elements.push(makeElement(parentElementLabel));
-
-        //     __.each(edges, function(childElementLabel) {
-        //       links.push(makeLink(parentElementLabel, childElementLabel));
-        //     });
-        //   });
-
-        //   // Links must be added after all the elements. This is because when the links
-        //   // are added to the graph, link source/target
-        //   // elements must be in the graph already.
-        //   return elements.concat(links);
-        // }
-
-        // function makeLink(parentElementLabel, childElementLabel) {
-
-        //   return new joint.dia.Link({
-        //     source: {
-        //       id: parentElementLabel
-        //     },
-        //     target: {
-        //       id: childElementLabel
-        //     },
-        //     // attrs: {
-        //     //   '.marker-target': {
-        //     //     d: 'M 4 0 L 0 2 L 4 4 z'
-        //     //   }
-        //     // },
-        //     attrs: {
-        //       '.connection': {
-        //         stroke: '#00ffff', //连线颜色
-        //         'stroke-width': 2 //连线粗细
-        //       },
-        //       '.marker-target': {
-        //         fill: '#00ffff', //箭头颜色
-        //         d: 'M 10 0 L 0 5 L 10 10 z' //箭头样式
-        //       }
-        //     },
-        //     // smooth: true//曲线
-        //     router: {
-        //       name: 'manhattan'
-        //     } //设置连线弯曲样式 manhattan直角
-        //   });
-        // }
-
-        // function makeElement(label) {
-
-        //   var maxLineLength = __.max(label.split('\n'), function(l) {
-        //     return l.length;
-        //   }).length;
-
-        //   // Compute width/height of the rectangle based on the number
-        //   // of lines in the label and the letter size. 0.6 * letterSize is
-        //   // an approximation of the monospace font letter width.
-        //   var letterSize = 15;
-        //   var width = 2 * (letterSize * (0.6 * maxLineLength + 1));
-        //   var height = 2 * ((label.split('\n').length + 1) * letterSize);
-
-        //   return new joint.shapes.basic.Rect({
-        //     id: label,
-        //     size: {
-        //       width: width,
-        //       height: height
-        //     },
-        //     attrs: {
-        //       text: {
-        //         text: label,
-        //         fill: '#fff',
-        //         'font-size': letterSize,
-        //         'font-family': 'monospace',
-        //         'font-weight': 'bold',
-        //       },
-        //       rect: {
-        //         width: width,
-        //         height: height,
-        //         rx: 5,
-        //         ry: 5,
-        //         // stroke: '#555',
-        //         fill: {
-        //           type: 'linearGradient',
-        //           stops: [{
-        //               offset: '0%',
-        //               color: 'darkcyan'
-        //             }, //渐变开始
-        //             {
-        //               offset: '100%',
-        //               color: 'dark'
-        //             } //渐变结束
-        //           ],
-        //           attrs: {
-        //             x1: '0%',
-        //             y1: '0%',
-        //             x2: '0%',
-        //             y2: '100%'
-        //           }
-        //         },
-        //         stroke: 'darkcyan', //边框颜色
-        //         'stroke-width': 1 //边框大小
-        //       }
-        //     }
-        //   });
-        // }
-
-        // Main.
-        // -----
-
-
-
-
-
-        // Just give the viewport a little padding.
-        // V(paper.viewport).translate(20, 20);
-
-        // $('#btn-layout').on('click', layout);
-
-
         let that = this;
 
-        // var graph = new joint.dia.Graph;
         var graph = this.graph;
 
-        // function layout() {
-        //   // var graph = new joint.dia.Graph;
-        //   // try {
-        //   //   var adjacencyList = eval('adjacencyList = ' + $('#adjacency-list').val());
-        //   // } catch (e) {
-        //   //   alert(e);
-        //   // }
-
-        //   // var adjacencyList = eval('adjacencyList=' + that.adjacencyList);
-        //   var adjacencyList = that.adjacencyList1;
-        //   // var adjacencyList = {
-        //   //   '指标体系_1': ['指标1'],
-        //   //   '指标1': ['指标4', '指标5', '指标6', '指标7', '指标8', '指标9'],
-        //   //   '指标4': [],
-        //   //   '指标5': [],
-        //   //   '指标6': [],
-        //   //   '指标7': [],
-        //   //   '指标8': [],
-        //   //   '指标9': [],
-        //   // };
-        //   var cells = buildGraphFromAdjacencyList(adjacencyList);
-        //   graph.resetCells(cells);
-        //   // joint.layout.DirectedGraph.layout(graph, {
-        //   //   setLinkVertices: false
-        //   // });
-        //   joint.layout.DirectedGraph.layout(graph, {
-        //     nodeSep: 50,
-        //     edgeSep: 50,
-        //     rankDir: "TB", //BT TB LR RL
-        //     dagre: dagre,
-        //     graphlib: graphlib
-        //   });
-
-        //   // return graph;
-        // }
         this.layout(graph);
 
         this.paper = new joint.dia.Paper({
           el: $('#paper6'), // 指向HTML里ID为"myGraph"的元素
           width: width || 600, // 画布宽600像素
           height: height || 300, // 画布高300像素
-          gridSize: 5, // 画布上元素拖动时步进的为5像素，默认1
+          gridSize: 10, // 画布上元素拖动时步进的为5像素，默认1
           drawGrid: true, // 显示步进点，方便对齐
           background: { // 画布背景色
             color: 'rgba(0, 0, 0, 0.1)'

@@ -46,6 +46,7 @@ export const otherRouter = {
   }]
 };
 
+//业务相关
 export const svgRouter = {
   path: '',
   name: 'svgRouter',
@@ -56,18 +57,86 @@ export const svgRouter = {
   component: Layout,
   children: [
     {
-      path: 'zhibiao',
-      name: 'zhibiao',
-      title: '指标体系',
-      component: () => import('src/myPages/zhibiao')
+      path: 'pinggurenwu',
+      name: 'pinggurenwu',
+      title: '评估任务',
+      component: () => import('src/myPages/pinggurenwu')
     },
     {
-      path: 'juhe',
-      name: 'juhe',
-      title: '聚合流程',
-      component: () => import('src/myPages/juhe')
+      path: 'pinggujieduan',
+      name: 'pinggujieduan',
+      title: '评估阶段',
+      component: () => import('src/myPages/pinggujieduan')
     },
-    
+    {
+      path: 'pingguduixiang',
+      name: 'pingguduixiang',
+      title: '评估对象',
+      component: () => import('src/myPages/pingguduixiang')
+    },
+
+    {
+      path: 'pingguweidu',
+      name: 'pingguweidu',
+      title: '评估维度',
+      component: () => import('src/myPages/pingguweidu')
+    },
+    {
+      path: 'pinggufangan',
+      name: 'pinggufangan',
+      title: '评估方案',
+      component: () => import('src/myPages/pinggufangan')
+    },
+    {
+      path: 'yuchulidingyi',
+      name: 'yuchulidingyi',
+      title: '预处理定义',
+      component: () => import('src/myPages/yuchulidingyi')
+    },
+    {
+      path: 'shujuyuandingyi',
+      name: 'shujuyuandingyi',
+      title: '数据源定义',
+      component: () => import('src/myPages/shujuyuandingyi')
+    },
+    {
+      path: 'yuchuliyingshe',
+      name: 'yuchuliyingshe',
+      title: '预处理映射',
+      component: () => import('src/myPages/yuchuliyingshe')
+    },
+    {
+      path: 'yuchuliliuchengdingyi',
+      name: 'yuchuliliuchengdingyi',
+      title: '预处理流程定义',
+      component: () => import('src/myPages/yuchuliliuchengdingyi')
+    },
+    {
+      path: 'yuchulidaoruyingshe',
+      name: 'yuchulidaoruyingshe',
+      title: '预处理导入映射',
+      component: () => import('src/myPages/yuchulidaoruyingshe')
+    },
+    {
+      path: 'pinggushili',
+      name: 'pinggushili',
+      title: '评估实例',
+      component: () => import('src/myPages/pinggushili')
+    },
+    {
+      path: 'shili',
+      name: 'shili',
+      title: '实例1',
+      component: () => import('src/myPages/shili')
+    },
+
+    {
+      path: 'primary',
+      name: 'primary',
+      title: '元',
+      component: () => import('src/myPages/svg/svgPrimary')
+    },
+
     {
       path: 'svg',
       name: 'svg',

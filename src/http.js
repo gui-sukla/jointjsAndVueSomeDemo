@@ -6,11 +6,11 @@ import {
 } from 'element-ui';
 import store from './store/index';
 import router from './router/index';
-import { sessionStorage } from 'src/assets/js/storage';
+// import { sessionStorage } from 'src/assets/js/storage';
 
-if (!store.state.token) {
-  store.commit('SET_TOKEN', sessionStorage.getItem('token'));
-}
+// if (!store.state.token) {
+//   store.commit('SET_TOKEN', sessionStorage.getItem('token'));
+// }
 
 // axios 配置
 
@@ -42,12 +42,12 @@ http.interceptors.request.use(config => {
   });
 
   // 开发环境下，如果请求是 post,put,patch,则打印数据体，方便调试
-  if (process.env.NODE_ENV === 'development') {
-    const { method } = config;
-    if (method === 'post' || method === 'put' || method === 'patch') {
-      console.log(config.data);
-    }
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   const { method } = config;
+  //   if (method === 'post' || method === 'put' || method === 'patch') {
+  //     console.log(config.data);
+  //   }
+  // }
 
   return config;
 }, error => {
