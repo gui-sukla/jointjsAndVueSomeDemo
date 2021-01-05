@@ -15,7 +15,7 @@
   "dependencies": {
     "@tweenjs/tween.js": "^17.2.0",
     "animate.css": "^3.5.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "backbone": "^1.4.0",
     "dagre": "^0.8.5",
     "element-ui": "^2.0.0",
